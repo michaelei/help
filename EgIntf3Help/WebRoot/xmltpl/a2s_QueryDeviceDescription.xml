@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="QueryDeviceDescription">
+	<!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码-->
+	<pkgId>1</pkgId>
+	<!-- 以下几项表示查询设备描述信息的查询条件，有几种情况：
+		1、如何以下三项都没有，那么返回全部的信息
+		2、如何有addr，则根据addr查询
+		3、如果有ctrlUUID和deviceCode，则根据这两项查询
+		
+		查询结果格式参考：s2a_DeviceDescriptionList
+	 -->
+	<addr>1234</addr>
+	<ctrlUUID>00:00:00:00:00:11</ctrlUUID>
+	<deviceCode>100</deviceCode>
+</egintf3>

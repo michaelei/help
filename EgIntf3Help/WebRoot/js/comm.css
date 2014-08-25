@@ -1,0 +1,31 @@
+/* CSS Document */
+body {
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.info-title {
+	font-size: 18px;
+	font-weight: bold;
+}
+.paddingleft10 {
+	padding-left: 20px;
+}
+
+.justbold {
+	font-weight: bold;
+}
+.text-anno {
+	color: #099;
+}
+.text-red {
+	color: #F00;
+}
+.text-blue {
+	color: #009;
+}
+.text-green {
+	color: #060;
+}
+.text-gray {
+	color: #666;
+}

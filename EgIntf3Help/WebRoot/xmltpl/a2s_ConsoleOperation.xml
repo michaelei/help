@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="ConsoleOperation">
+	<!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码-->
+	<pkgId>1</pkgId>
+	<!-- 控制台对象的一些常用set方法，不是所以的都需要，按照需求来，至少一个
+			该操作会返回一个s2a_RequestError.xml内容，但是其中的error=ok
+	 -->
+	 <!-- 设置下发任务的超时时间，系统默认为60秒，此处设置的时间单位为秒 -->
+	<setTaskTimeout>60</setTaskTimeout>
+	<!-- 设置当前通讯使用的密钥组编号，此处值必须>=0，系统默认=0 -->
+	<setCurUseKeyNum>0</setCurUseKeyNum>
+	<!-- 为系统添加通讯密钥，因为控制台对象没有存储功能，所以如果app有自定义的密钥，需要在此设置
+			密钥可以设置多组，编号从1开始
+			密钥类型：1=DES, 2=3DES, 5=AES
+	 -->
+	<addSecurityKeys>
+		<key keyNo="1"  keyType="5">0102030405060708</key>
+		<key keyNo="2"  keyType="5">0102030405060708</key>
+	</addSecurityKeys>
+	<!-- 设置每一包下载开门权限所能容纳的最大权限条数，默认30条 -->
+	<setMaxPopedom>30</setMaxPopedom>
+	<!-- 针对GPRS主控器，设置主控器的SIM卡信息，主要是主控器中的手机号码， -->
+	<setCtrlSIMInfo>
+		<simInfo ctrlUUID="12345678">13511111111</simInfo>
+		<simInfo ctrlUUID="12345679">13511111112</simInfo>
+		<simInfo ctrlUUID="12345670">13511111112</simInfo>
+	</setCtrlSIMInfo>
+</egintf3>

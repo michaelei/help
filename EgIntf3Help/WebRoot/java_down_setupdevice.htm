@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">消息类： com.eg.intf3.msg.SetupDevice</p>
+<p class="paddingleft10">建立主控器与设备之间的对应关系。由于主控器和门锁是两个独立的硬件设备，因此需要在使用之前，对两者进行配对。一般情况下，一个主控器只有一把门锁，特殊情况，一个主控器也可以同时连接多把门锁或者其它设备。门锁等设备只有和主控器建立好配置关系后，才可以进行其它下行控制操作。</p>
+<p class="info-title">示例代码</p>
+<div style="padding-left:20px;">
+<span class="text-anno">//指定主控器唯一标识符和设备通讯码</span><br />
+String ctrlUUID = "14:06:30:00:04:AB";<br />
+int deviceCode = 100;<br />
+<span class="text-anno">//构造设备配置控制对象</span><br />
+SetupDevice msg = new SetupDevice(ctrlUUID);<br />
+<span class="text-anno">//构造某个具体的设备配置信息对象</span><br />
+DeviceSetupInfo info = new DeviceSetupInfo();<br />
+<span class="text-anno">//设置设备类型为门锁</span><br />
+info.setDeviceType(DeviceSetupInfo.DTYPE_Lock);<br />
+<span class="text-anno">//设置设备的序列号，门锁从100开始，100表示该主控器下的第一把门锁</span><br />
+info.setDeviceCode(deviceCode);<br />
+<span class="text-anno">//设置该门锁的唯一标识符</span><br />
+info.setAddr(&quot;31859&quot;);<br />
+<span class="text-anno">/**<br />
+* 配置操作:<br />
+* DeviceSetupInfo.DOPERATE_Add_or_Modify: 新增或修改某个设备<br />
+* <br />
+* DeviceSetupInfo.DOPERATE_Delete: 删除该设备，即解除门锁与主控器的配对，一般在换门锁时候使用<br />
+* <br />
+* DeviceSetupInfo.DOPERATE_Delete_All: 清除该主控器下的所有关联的门锁<br />
+* <br />
+*/</span><br />
+info.setOperate(DeviceSetupInfo.DOPERATE_Add_or_Modify);<br />
+<span class="text-anno">//将某个设备的配置信息添加到控制对象中去</span><br />
+msg.addDeviceSetupInfo(info);<br />
+<span class="text-anno">//如果需要的话，也可以给下行任务赋值一个用户自定义的辅助信息，如数据库id等，便于后续的操作</span><br />
+msg.setCustomInfo(&quot;自定义的辅助信息&quot;);<br />
+console.dispatchTask(msg, new OneTaskStateChangeAdapter(){<br />
+<blockquote>
+@Override<br />
+public void onSuccess(Task task) {<br />
+<span class="text-anno">//设备配置成功</span><br />
+}<br />
+<br />
+@Override<br />
+public void onFail(Task task) {<br /> 
+<span class="text-anno">//设备配置失败 </span><br />
+}<br />
+</blockquote>
+}); </div>
+</body>
+</html>

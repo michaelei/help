@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="../js/comm.js"></script>
+<link href="../js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<input type="button" value="返回" onclick="history.back()" />
+<hr />
+<span class="text-gray"><br>
+&lt;!-- <br />
+</span>
+<div class="text-gray" style="padding-left:20px;">
+  获得要写入卡片的数据内容，本系统提供的写卡类型：<br />
+  Peopedom Card		权限卡<br />
+  Systerm Key Set Card		系统密码设置卡<br />
+  Region Set Card		区域设置卡<br />
+  Total Control Card		总控卡<br />
+  Emergency Card		应急卡<br />
+  Clean Card		清洁卡<br />
+  TimeSetCard		时钟卡<br />
+  <br />
+  该xml中可以包含多个卡片信息，至少一种<br />
+</div>
+<span class="text-gray"> --&gt;</span><br />
+<span class="text-blue">&lt;?xml version=&quot;</span><span class="text-green">1.0</span><span class="text-blue">&quot; encoding=&quot;</span><span class="text-green">UTF-8</span><span class="text-blue">&quot;?&gt;<br />
+&lt;egintf3 name=&quot;</span><span class="text-green">WriteCardData</span><span class="text-blue">&quot;&gt;</span><br />
+<div style="padding-left:20px;">
+<span class="text-gray">&lt;!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码--&gt;</span><br />
+<span class="text-blue">&lt;pkgId&gt;</span>1<span class="text-blue">&lt;/pkgId&gt;</span><br />
+<span class="text-gray">&lt;!-- 系统密钥，由APP维护的一个字符串，通过主控器参数中的matchCode设置到主控器 --&gt;</span><br />
+<span class="text-blue">&lt;systemKey&gt;</span>123456abcdefg<span class="text-blue">&lt;/systemKey&gt;</span><br />
+<span class="text-gray">&lt;!-- 以下几种卡类型，至少指定一种 --&gt;<br />
+&lt;!-- 密钥设置卡 --&gt;</span><br />
+<span class="text-blue">&lt;SystemKeySetCard&gt;</span><br />
+<div style="padding-left:40px;">
+<span class="text-gray">&lt;!-- 旧系统密码  默认:0x79776A74，该属性可选，如果是第一次设置，则该属性无需指定，只有当系统密钥发生改变时候，才需要指定oldSystemKey --&gt;</span><br />
+<span class="text-blue">&lt;oldSystemKey&gt;</span>123456abcdefg<span class="text-blue">&lt;/oldSystemKey&gt;</span></div>
+<span class="text-blue">&lt;/SystemKeySetCard&gt;</span><br />
+<span class="text-gray">&lt;!-- 区域设置卡 --&gt;</span><br />
+<span class="text-blue">&lt;RegionSetCard&gt;</span><br />
+<div style="padding-left:40px;">
+<span class="text-gray">&lt;!-- 栋ID --&gt;</span><br />
+<span class="text-blue">&lt;buildingID&gt;</span>1<span class="text-blue">&lt;/buildingID&gt;</span><br />
+<span class="text-gray">&lt;!-- 层ID --&gt;</span><br />
+<span class="text-blue">&lt;floorID&gt;</span>1<span class="text-blue">&lt;/floorID&gt;</span><br />
+<span class="text-gray">&lt;!-- 区域ID --&gt;</span><br />
+<span class="text-blue">&lt;regionID&gt;</span>1<span class="text-blue">&lt;/regionID&gt;</span><br />
+<span class="text-gray">&lt;!-- 被设置的门ID， 防错作用 --&gt;</span><br />
+<span class="text-blue">&lt;doorID&gt;</span>1<span class="text-blue">&lt;/doorID&gt;</span></div>
+<span class="text-blue">&lt;/RegionSetCard&gt;</span><br />
+<span class="text-gray">&lt;!-- 总控卡 --&gt;</span><br />
+<span class="text-blue">&lt;TotalControlCard&gt;<br />
+&lt;/TotalControlCard&gt;</span><br />
+<span class="text-gray">&lt;!-- 应急卡 --&gt;</span><br />
+<span class="text-blue">&lt;EmergencyCard&gt;<br />
+&lt;/EmergencyCard&gt;</span><br />
+<span class="text-gray">&lt;!-- 时钟设置卡 --&gt;</span><br />
+<span class="text-blue">&lt;TimeClockSetCard&gt;<br />
+&lt;/TimeClockSetCard&gt;</span><br />
+<span class="text-gray">&lt;!-- 权限设置卡 / 清洁卡，清洁卡为权限设置卡的一种特例，两者需要指定的属性相同，当属性isCleanCard=true时，则为清洁卡，否则为一般权限卡 --&gt;</span><br />
+<span class="text-blue">&lt;PopedomSetCard isCleanCard=&quot;true&quot;&gt;</span><br />
+<div style="padding-left:40px;">
+<span class="text-gray">&lt;!-- 指定多条权限 --&gt;</span><br />
+<span class="text-blue">&lt;WCardPopedom&gt;</span><br />
+<div style="padding-left:40px;">
+<span class="text-gray">&lt;!-- 区分主客卡。1为主卡，0为客卡，可选，默认0 --&gt;</span><br />
+<span class="text-blue">&lt;cardGuestType&gt;0&lt;/cardGuestType&gt;</span><br />
+<span class="text-gray">&lt;!-- 本次权限是否表示例外，可选，默认否 --&gt;</span><br />
+<span class="text-blue">&lt;isExcept&gt;false&lt;/isExcept&gt;</span><br />
+<span class="text-gray">&lt;!-- 本卡片的操作对象，0：门卡，1：栋卡，2：层卡，3：区域卡，可选，默认0 --&gt;</span><br />
+<span class="text-blue">&lt;targetType&gt;0&lt;/targetType&gt;</span><br />
+<span class="text-gray">&lt;!-- 操作对象的ID，可以为门锁地址、栋、层、区ID，但是类型必须一致，由targetType来指定，多个IDs之间用英文逗号（,）隔开 --&gt;</span><br />
+<span class="text-blue">&lt;targetIDs&gt;</span>12,23,456,78<span class="text-blue">&lt;/targetIDs&gt;</span><br />
+<span class="text-gray">&lt;!-- 权限的时间段设置，以下几个use开头的内容可选，几种方案中选择一种即可 --&gt;<br />
+&lt;!-- 启用日期段 --&gt;</span><br />
+<span class="text-blue">&lt;useDate&gt;<br />
+</span>
+<div style="padding-left:20px;">
+  <span class="text-blue">&lt;startDate&gt;</span>2013-01-01<span class="text-blue">&lt;/startDate&gt;<br />
+  &lt;endDate&gt;</span>2013-12-31<span class="text-blue">&lt;/endDate&gt;</span></div>
+<span class="text-blue">&lt;/useDate&gt;</span><br />
+<span class="text-gray">&lt;!-- 启用时间段，精确到分 --&gt;</span><br />
+<span class="text-blue">&lt;useTime&gt;<br />
+</span>
+<div style="padding-left:20px;">
+  <span class="text-blue">&lt;startTime&gt;</span>00:00<span class="text-blue">&lt;/startTime&gt;<br />
+  &lt;endTime&gt;</span>23:59<span class="text-blue">&lt;/endTime&gt;</span></div>
+<span class="text-blue">&lt;/useTime&gt;</span><br />
+<span class="text-gray">&lt;!-- 启用星期几 --&gt;</span><br />
+<span class="text-blue">&lt;useWeek&gt;</span><br />
+<div style="padding-left:20px;">
+<span class="text-gray">&lt;!-- 需要星期几，就放一个标签 --&gt;</span><br />
+<span class="text-blue">&lt;sunday&gt;</span>1<span class="text-blue">&lt;/sunday&gt;<br />
+&lt;monday&gt;</span>1<span class="text-blue">&lt;/monday&gt;<br />
+&lt;tuesday&gt;</span>1<span class="text-blue">&lt;/tuesday&gt;<br />
+&lt;wednesday&gt;</span>1<span class="text-blue">&lt;/wednesday&gt;<br />
+&lt;thursday&gt;</span>1<span class="text-blue">&lt;/thursday&gt;<br />
+&lt;friday&gt;</span>1<span class="text-blue">&lt;/friday&gt;<br />
+&lt;saturday&gt;</span>1<span class="text-blue">&lt;/saturday&gt;</span></div>
+<span class="text-blue">&lt;/useWeek&gt;</span><br />
+<span class="text-gray">&lt;!-- 使用连续的时间段 --&gt;</span><br />
+<span class="text-blue">&lt;useContinuousTime&gt;<br />
+</span>
+<div style="padding-left:20px;">
+  <span class="text-blue">&lt;startTime&gt;</span>2013-01-01 00:00<span class="text-blue">&lt;/startTime&gt;<br />
+  &lt;endTime&gt;</span>2013-12-31 23:59<span class="text-blue">&lt;/endTime&gt;</span></div>
+<span class="text-blue">&lt;/useContinuousTime&gt;</span><br />
+<span class="text-gray">&lt;!-- 不限制时间段 --&gt;</span><br />
+<span class="text-blue">&lt;useUnlimitedTime&gt;</span>1<span class="text-blue">&lt;/useUnlimitedTime&gt;</span></div>
+<span class="text-blue">&lt;/WCardPopedom&gt;</span><br />
+
+<span class="text-gray">&lt;!-- 继续其它权限...... --&gt;</span></div>
+<span class="text-blue">&lt;/PopedomSetCard&gt;</span></div>
+<span class="text-blue">&lt;/egintf3&gt;
+</span>
+</body>
+</html>

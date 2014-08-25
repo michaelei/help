@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="OnlineNotify">
+	<ctrlUUID>12345678</ctrlUUID>
+	<deviceCode>100</deviceCode>
+	<deviceType>1</deviceType>
+	<workStatus>0</workStatus>
+</egintf3>

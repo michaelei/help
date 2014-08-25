@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="DeviceDescriptionList">
+	<!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码-->
+	<pkgId>1</pkgId>
+	<!-- 返回的数量，0表示无 -->
+	<count>2</count>
+	<!-- 返回的设备描述信息，多条
+	其中name属性：返回utf-8格式的字节内容
+	 -->
+	<DeviceDescription addr="1234" ctrlUUID="00:00:00:00:00:11" deviceCode="100" deviceType="DTYPE_Lock" name="0102030405060708" />
+	<DeviceDescription addr="1235" ctrlUUID="00:00:00:00:00:11" deviceCode="101" deviceType="DTYPE_Lock" name="0102030405060708" />
+</egintf3>

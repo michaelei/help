@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">消息类：com.eg.intf3.msg.UpgradeNotify </p>
+<p class="paddingleft10">通知主控器或门锁等设备进行固件程序升级，当设备收到该升级通知后，会主动上行来获取升级文件内容。</p>
+<p class="info-title">示例代码</p>
+<div style="padding-left:20px;">
+<span class="text-anno">//指定主控器唯一标识符和设备通讯码</span><br />
+String ctrlUUID = "14:06:30:00:04:AB";<br />
+<span class="text-anno">//如果要升级主控器，则deviceCode=0</span><br />
+int deviceCode = 100;<br />
+<span class="text-anno">// 指定升级文件</span><br />
+File file = new File(&quot;D:\\TmpDocs\\lock_0109_2100.bin&quot;);<br />
+<span class="text-anno">// 创建升级通知消息对象</span><br />
+UpgradeNotify msg = new UpgradeNotify(ctrlUUID, deviceCode, file);<br />
+<span class="text-anno">//下发消息并设置监听器</span><br />
+console.dispatchTask(msg, new OneTaskStateChangeAdapter(){<br />
+<blockquote>@Override<br />
+public void onSuccess(Task task) {<br />
+<br />
+}<br />
+<br />
+@Override<br />
+public void onFail(Task task) {<br />
+<br />
+}<br />
+</blockquote>
+});
+</div>
+</body>
+</html>

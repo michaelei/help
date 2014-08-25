@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="PutPopedoms">
+	<!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码-->
+	<pkgId>1</pkgId>
+	<ctrlUUID>12345678</ctrlUUID>
+	<deviceCode>100</deviceCode>
+	<!-- 权限列表，最多30个 -->
+	<popedom>
+		<!-- 可选，默认=0. 0：增加或修改, 1：删除, 2：修改, 3：清空门锁的所有开门权限, 4：挂失, 5：解挂 -->
+		<operate>0</operate>
+		<!-- 可选，默认=1，1：开门，2：巡更，3：指纹身份认证 -->
+		<type>0</type>
+		<!-- 16进制字符 -->
+		<cardNo>0102030405060708</cardNo>
+		<fingerID>01020304</fingerID>
+		<fingerCode>0102030405060708</fingerCode>
+		<remoteControllerID>01020304</remoteControllerID>
+		<identificationCardID>0102030405060708</identificationCardID>
+		<pin>abc</pin>
+		<forcePin>abc</forcePin>
+		<!-- 0=定时开门，1=定时关门  -->
+		<timerOpen>0</timerOpen>
+		<!-- 0=控制门1，1=控制门2，2=控制双门 -->
+		<controlDoor>2</controlDoor>
+		<!-- 0=客卡，1=主卡 -->
+		<cardGuestType>0</cardGuestType>
+		<!-- 1=最后一包，0=不是最后一包 -->
+		<isLast>0</isLast>
+		<!-- 权限的时间段设置，以下几个use开头的内容可选，几种方案中选择一种即可 -->
+		<!-- 启用日期段 -->
+		<useDate>
+			<startDate>2013-01-01</startDate>
+			<endDate>2013-12-31</endDate>
+		</useDate>
+		<!-- 启用时间段，精确到分 -->
+		<useTime>
+			<startTime>00:00</startTime>
+			<endTime>23:59</endTime>
+		</useTime>
+		<!-- 启用星期几 -->
+		<useWeek>
+			<!-- 需要星期几，就放一个标签 -->
+			<sunday>1</sunday>
+			<monday>1</monday>
+			<tuesday>1</tuesday>
+			<wednesday>1</wednesday>
+			<thursday>1</thursday>
+			<friday>1</friday>
+			<saturday>1</saturday>
+		</useWeek>
+		<!-- 使用连续的时间段 -->
+		<useContinuousTime>
+			<startTime>2013-01-01 00:00</startTime>
+			<endTime>2013-12-31 23:59</endTime>
+		</useContinuousTime>
+		<!-- 不限制时间段 -->
+		<useUnlimitedTime>1</useUnlimitedTime>
+		<!-- 由app指定的一个字符串，方便后续的查询，一般是app中该条权限的数据库id -->
+		<customId>12345</customId>
+	</popedom>
+</egintf3>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">消息类：com.eg.intf3.msg.SetupParameter </p>
+<p class="paddingleft10">设置门锁的工作参数</p>
+<p class="info-title">示例代码</p>
+<div style="padding-left:20px;">
+<span class="text-anno">//指定主控器唯一标识符和设备通讯码</span><br />
+String ctrlUUID = "14:06:30:00:04:AB";<br />
+int deviceCode = 100;<br />
+<span class="text-anno">//构造设备参数设置对象</span><br />
+SetupParameter msg = new SetupParameter(ctrlUUID, deviceCode);<br />
+<span class="text-anno">//门锁参数配置，以下各个set方法可选，至少一个</span><br />
+LockParameter parameter = new LockParameter();<br />
+<span class="text-anno">//门锁所属的区域ID，该ID号由上层应用APP指定</span><br />
+parameter.setAreaID(1);<br />
+<span class="text-anno">//门锁的自动上锁延时，单位：秒，默认5</span><br />
+parameter.setOpenDelay(5);<br />
+<span class="text-anno">/**<br />
+* 门锁的开门密码，该字段也可以在权限中单独设置<br />
+*/</span><br />
+parameter.setPin(&quot;123456&quot;);<br />
+<span class="text-anno">/**<br />
+* 开门密码最多允许失败的次数。<br />
+如果允许密码开门，失败后N分钟内不允许再次重试（防止密码遍历）。<br />
+*/</span><br />
+parameter.setPinRetry(3);<br />
+<span class="text-anno">/**<br />
+* 自动指纹抽查模式：<br />
+0：关闭<br />
+1：按周期随机抽查模式<br />
+*/</span><br />
+parameter.setFingerCheckMode(0);<br />
+<span class="text-anno">/**<br />
+* 用URL字符串的方式编码：<br />
+&quot;c=1&amp;n=1&amp;f=1&quot;<br />
+C参数代表周期类型：<br />
+1 - 每周<br />
+2 - 每旬 （10天）<br />
+3 - 每月<br />
+N参数代表每个周期内抽查次数<br />
+F参数代表验证失败后的处理策略<br />
+1 - 随机当日内，户主卡必须刷卡验证指纹一次成功后才能开门，否则当日不开门,每次不成功都提示指纹验证失败<br />
+2 - 随机当日内，户主卡连续三次刷卡验证指纹不成功后，第四次刷卡直接开门，提示指纹验证失败。<br />
+*/</span><br />
+parameter.setFingerCheckParam(&quot;c=1&amp;n=1&amp;f=1&quot;);<br />
+<span class="text-anno">/**<br />
+* 开门模式授权配置命令。用字符串来表达对允许的开门模式授权的修改请求。设定字符：<br />
+R：远程控制命令开门<br />
+C：刷用户门禁卡开门<br />
+P：PIN码开门<br />
+F：指纹开门<br />
+T：工程测试卡（可选）<br />
+S：超级卡（可选）<br />
+R=0代表禁止远程控制命令开门<br />
+R=1代表启用远程控制命令开门<br />
+字符组合PF=1代表启用指纹+PIN码的方式开门。<br />
+多个授权命令用分号';'分隔，<br />
+例如R=0;PF=1;C=0;CP=1;CF=1<br />
+具体支持那些组合的开门方式，由厂商硬件决定，并且出厂时配置了初始默认值。<br />
+*/</span><br />
+parameter.setAllowedOpenMode(&quot;R=0;PF=1;C=0;CP=1;CF=1&quot;);<br />
+<span class="text-anno">//消防联动（1需要消防联动，0无）</span><br />
+parameter.setFireLink(0);<br />
+<span class="text-anno">//门锁的自动设防和撤防功能（1设防，0撤防）</span><br />
+parameter.setDefenceMode(0);<br />
+<span class="text-anno">//自定义参数条目，参考URL 参数的编码方式。</span><br />
+parameter.setParamValue(&quot;dns=xx.xx.xx.xx&amp;dns2=xx&quot;);<br />
+<span class="text-anno">//门锁所属的栋ID，该ID号由上层应用APP指定</span><br />
+parameter.setBuildingID(1);<br />
+<span class="text-anno">//门锁所属的层ID，该ID号由上层应用APP指定</span><br />
+parameter.setFloorID(2);<br />
+<span class="text-anno">/**<br />
+* 门锁声音提示模式：<br />
+0：正常模式<br />
+1:夜间静音模式<br />
+2:夜间音量减半模式<br />
+*/</span><br />
+parameter.setSoundMode(1);<br />
+<span class="text-anno">//允许常开门：0：允许	1：不允许</span><br />
+parameter.setAllowAlwaysOpen(0);<br />
+<span class="text-anno">//允许长开门报警设置：	0：允许	1：不允许</span><br />
+parameter.setAllowLongTimeOpenedAlert(0);<br />
+<span class="text-anno">//设置配置的参数</span><br />
+msg.setParameter(parameter);<br />
+<span class="text-anno">//下发消息并设置监听器</span><br />
+console.dispatchTask(msg, new OneTaskStateChangeAdapter(){<br />
+<blockquote>@Override<br />
+public void onSuccess(Task task) {<br />
+<br />
+}<br />
+<br />
+@Override<br />
+public void onFail(Task task) {<br />
+<br />
+}<br />
+</blockquote>
+});</div>
+</body>
+</html>

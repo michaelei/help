@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">public void onUploadAlertRecord(UploadAlertRecord record) </p>
+<p class="paddingleft10">record：报警记录对象，Java类：com.eg.intf3.msg.UploadAlertRecord</p>
+<p class="info-title">示例代码</p>
+<blockquote>
+  <p>public void onUploadAlertRecord(UploadAlertRecord record) {<br />
+  	<blockquote>
+    <span class="text-anno">/**<br />
+    * 报警类型：<br />
+    * UploadAlertRecord.ALERT_TYPE_DISRUPT: 门锁防拆报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_FORCED_ENTER: 门锁强行闯入报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_POWER_OFF: 控制器断电报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_BACKUP_POWER_LOW: 控制器备用电池低电量报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_MANUAL: 手动报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_DOOR_LOCK_FAILED: 门未关好报警（虚掩）<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_BATTERY_POWER_LOW: （门锁）电池低电量<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_LONG_TIME_OPENED: 门长时间未关报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_FORCE_PIN: 使用胁迫密码报警<br />
+    * <br />
+    * UploadAlertRecord.ALERT_TYPE_CAPTURE_SD_OVERFLOW: 拍照器存储空间满（无法自动回收）。<br />
+    * <br />
+    * 还有其他一些报警类型，暂时用不到，以后可以扩展<br />
+    */</span><br />
+    record.getAlertType();<br />
+    <span class="text-anno">//报警发生的时间戳，与 UTC 1970年时间差，以秒为单位</span><br />
+    record.getTimeStamp();<br />
+    <span class="text-anno">//主控器唯一编号</span><br />
+    record.getCtrlUUID();<br />
+    <span class="text-anno">//门锁编号，一般就是100</span><br />
+    record.getDeviceCode();<br />
+    </blockquote>
+    }</p>
+</blockquote>
+</body>
+</html>

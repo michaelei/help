@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="paddingleft10">对于设备主动上传的消息，需要自定义监听器来处理。自定义方式有两种： </p>
+<p class="info-title">第一种：自定义Java类实现 com.eg.intf3.listener.MessageTaskListener 接口中的所有方法</p>
+<blockquote>
+  <p>public class MyUpMsgListener implements MessageTaskListener{</p>
+  <blockquote>
+    <p> @Override<br />
+      public void onConnectionOpened(String remoteIP, int port, String ctrlUUID) {<br />
+      	<span class="text-anno">//当主控器联机时触发，参考“<a href="#" onclick="fnParentToPage('java_up_conndisconn.htm')">主控器的连接与断开</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onConnectionClosed(String remoteIP, int port, String ctrlUUID) {<br />
+      <span class="text-anno">//当主控器脱机时触发，参考“<a href="#" onclick="fnParentToPage('java_up_conndisconn.htm')">主控器的连接与断开</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onSystemNotifyInfo(String info) {<br />
+      <span class="text-anno">//接收EgIntf3的内部调试信息，参考“<a href="#" onclick="fnParentToPage('java_up_systeminfo.htm')">系统调试信息</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onMessageSent(String remoteIP, int port, String ctrlUUID,<br />
+      byte[] content, long timestamp) {<br />
+      <span class="text-anno">//接收下发给主控器的二进制字节数据，参考“<a href="#" onclick="fnParentToPage('java_up_msgsent.htm')">下发给主控器的字节数据</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onTaskStateChange(Task task) {<br />
+      <span class="text-anno">//当下发的任务状态发生改变时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_taskchange.htm')">下行控制任务的状态变化</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onUploadStatus(DeviceStatusInfo statusInfo) {<br />
+      <span class="text-anno">//当接收到设备状态时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_status.htm')">接收到设备状态</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onUploadOpenRecord(UploadOpenRecord record) {<br />
+      <span class="text-anno">//当接收到开门记录时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_openrecord.htm')">接收到开门记录</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onUploadAlertRecord(UploadAlertRecord record) {<br />
+      <span class="text-anno">//当接收到设备报警记录时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_alertrecord.htm')">接收到报警记录</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onOnlineNotify(OnlineNotify onlineNotify) {<br />
+      <span class="text-anno">//当有设备上线时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_onlinenotify.htm')">接收到设备上线提醒</a>”</span><br />
+      }</p>
+  </blockquote>
+  <p>}</p>
+</blockquote>
+<p class="info-title">第二种：自定义Java类继承 com.eg.intf3.listener.MessageTaskAdapter 并实现其中的若干方法</p>
+<p class="paddingleft10">MessageTaskAdapter类本身就是实现了MessageTaskListener接口，只不过其中的所有方法都为空，而自定义的MyUpMsgListener通过继承MessageTaskAdapter
+，则只需要根据实际情况实现其中的若干方法即可。一般建议采用第二种方式。</p>
+<blockquote>
+  <p>public class MyUpMsgListener extends MessageTaskAdapter{</p>
+  <blockquote>
+    <p> @Override<br />
+      public void onConnectionOpened(String remoteIP, int port, String ctrlUUID) {<br />
+      <span class="text-anno">//当主控器联机时触发，参考“<a href="#" onclick="fnParentToPage('java_up_conndisconn.htm')">主控器的连接与断开</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onConnectionClosed(String remoteIP, int port, String ctrlUUID) {<br />
+      <span class="text-anno">//当主控器脱机时触发，参考“<a href="#" onclick="fnParentToPage('java_up_conndisconn.htm')">主控器的连接与断开</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onUploadStatus(DeviceStatusInfo statusInfo) {<br />
+      <span class="text-anno">//当接收到设备状态时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_status.htm')">接收到设备状态</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onUploadOpenRecord(UploadOpenRecord record) {<br />
+      <span class="text-anno">//当接收到开门记录时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_openrecord.htm')">接收到开门记录</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onUploadAlertRecord(UploadAlertRecord record) {<br />
+      <span class="text-anno">//当接收到设备报警记录时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_alertrecord.htm')">接收到报警记录</a>”</span><br />
+      }</p>
+    <p> @Override<br />
+      public void onOnlineNotify(OnlineNotify onlineNotify) {<br />
+      <span class="text-anno">//当有设备上线时候触发，参考“<a href="#" onclick="fnParentToPage('java_up_onlinenotify.htm')">接收到设备上线提醒</a>”</span><br />
+      }</p>
+  </blockquote>
+  <p>}</p>
+</blockquote>
+</body>
+</html>
