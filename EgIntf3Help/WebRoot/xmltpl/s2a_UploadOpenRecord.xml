@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="UploadOpenRecord">
+	<!-- 记录ID号，字符，唯一，可用于数据库保存时候的判断 -->
+	<recordID>827CCB0EEA8A706C4C34A16891F84E7B</recordID>
+	<ctrlUUID>12345678</ctrlUUID>
+	<deviceCode>100</deviceCode>
+	<deviceType>1</deviceType>
+	<recordType>0</recordType>
+	<resultCode>0</resultCode>
+	<timeStamp>2013-01-01 12:12:12</timeStamp>
+	<lockerStatus>0</lockerStatus>
+	<alarmFlags>0</alarmFlags>
+	<!-- 开门类型：
+	 * 0=未知
+	 * 1=刷卡
+	 * 2=PIN/密码
+	 * 3=指纹
+	 * 4=刷卡+密码
+	 * 5=刷卡+指纹
+	 * 6=刷卡+密码+指纹
+	 * 7=密码+指纹
+	 * 8=机械钥匙开门
+	 * 9=出门按钮开门
+	 * 10=把手开门
+	 * 11=外部信号（对讲机）开门
+	 * 12=远程命令开门
+	 * 13=强行闯入开门
+	 -->
+	<openType>12</openType>
+	<!-- 下面五个可选 -->
+	<cardType>0</cardType>
+	<cardNumber>0102030405060708</cardNumber>
+	<cardExtension>0102030405060708</cardExtension>
+	<fingerID>01020304</fingerID>
+	<customInfo>13511111111</customInfo>
+</egintf3>

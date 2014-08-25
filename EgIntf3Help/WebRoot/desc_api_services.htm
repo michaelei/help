@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h2>API服务的启动</h2>
+<p align="left">双击RunAsServer/runAsServer.bat启动服务，如下图： </p>
+<p align="left"><img src="icon/api_service.jpg" width="593" height="442" /></p>
+<p align="left">
+<p>1、填写相应的配置数据：</p> 
+<div style="padding-left:20px;">
+ 主控器（Controller）的TCP端口：默认2013，提供给底层主控器连接的使用。 <br />
+ 上层应用（APP）的TCP端口：默认2014，提供给上层应用程序使用。 <br />
+ APP连接的用户名和密码，默认都是app，该密码即是APP认证中使用的密码。 <br />
+ 软件右侧提供内置的短信猫程序。（后续会有说明） <br />
+  <span class="text-red">注意：为了保持了Tcp的连接，APP可以间隔一段时间（5分钟或10分钟）发送任意非XML格式的字符（必须是ASC码字符）给服务器作为心跳包 </span><br />
+  </div>
+<p>2、点击&ldquo;启动&rdquo;按钮启动服务 </p>
+3、点击&ldquo;停止&rdquo;按钮停止服务 </p>
+<p align="left">&nbsp;</p>
+</body>
+</html>

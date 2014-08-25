@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">public void onConnectionOpened(String remoteIP, int port, String ctrlUUID) </p>
+<p class="paddingleft10">该方法会在主控器建立Tcp连接并告知EgIntf3时触发。</p>
+<p class="paddingleft10">remoteIP：主控器的IP地址。</p>
+<p class="paddingleft10">port：主控器的本次Tcp连接端口号。</p>
+<p class="paddingleft10">ctrlUUID：主控器唯一标识符。如果为null，则此时仅仅表示有Tcp连接上来，但是并不能确定连接来自于哪个主控器。</p>
+<p class="info-title">示例代码</p>
+<blockquote>
+  <p>public void onConnectionOpened(String remoteIP, int port, String ctrlUUID) {<br />
+  	<blockquote>
+    if(ctrlUUID==null || ctrlUUID.equals(&quot;&quot;))<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;return;<br />
+    System.out.println(&quot;主控器 &quot;+ctrlUUID+&quot; 联机。执行后续处理动作......&quot;);<br />
+    </blockquote>
+    }</p>
+</blockquote>
+<blockquote>
+	<p>public void onConnectionClosed(String remoteIP, int port, String ctrlUUID) {<br />
+    <blockquote>
+    if(ctrlUUID==null || ctrlUUID.equals(&quot;&quot;))<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;return;<br />
+    System.out.println(&quot;主控器 &quot;+ctrlUUID+&quot; 断线。执行后续处理动作......&quot;);<br />
+	</blockquote>
+}</p>
+</blockquote>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">public void onUploadStatus(DeviceStatusInfo statusInfo) </p>
+<p class="paddingleft10">接收到设备主动上传的运行状态时候触发。</p>
+<p class="paddingleft10">statusInfo：设备状态对象的基础类，目前主要有三种子类。</p>
+<p class="paddingleft10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类1：com.eg.intf3.msg.ControllerStatusInfo，主控器状态。</p>
+<p class="paddingleft10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类2：com.eg.intf3.msg.LockStatusInfo，门锁状态。</p>
+<p class="paddingleft10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子类3：com.eg.intf3.msg.ExtModuleStatusInfo，扩展模块状态。</p>
+<p class="info-title">示例代码</p>
+<blockquote>
+  <p>public void onUploadStatus(DeviceStatusInfo statusInfo) {<br />
+  	<blockquote>
+    if(statusInfo instanceof ControllerStatusInfo){<br />
+    <blockquote>
+    <span class="text-anno">//表示主控器的工作状态</span><br />
+    ControllerStatusInfo info = (ControllerStatusInfo)statusInfo;<br />
+    <span class="text-anno">//设备工作状态	0：正常工作，	1: 脱机，其他异常状态码</span><br />
+    info.getWorkStatus();<br />
+    <span class="text-anno">//主控器的软件版本号</span><br />
+    info.getSoftwareVersionStr();<br />
+    <span class="text-anno">//主控器的硬件版本号</span><br />
+    info.getHardwareVersionStr();<br />
+    <span class="text-anno">//主控器备用电池的电量，如43表示4.3伏</span><br />
+    info.getBattery();<br />
+    <span class="text-anno">//本次状态采集的时间，与UTC时间1970年时间差，以秒为单位</span><br />
+    info.getTime();<br />
+    </blockquote>
+    }else if(statusInfo instanceof LockStatusInfo){<br />
+    <blockquote>
+    <span class="text-anno">//表示门锁的工作状态</span><br />
+    LockStatusInfo info = (LockStatusInfo)statusInfo;<br />
+    <span class="text-anno">//门锁的唯一编号，虽然是一个字符型，但是目前以整数表示，如8321</span><br />
+    info.getAddress();<br />
+    <span class="text-anno">//设备工作状态	0：正常工作，	1: 脱机，其他异常状态码</span><br />
+    info.getWorkStatus();<br />
+    <span class="text-anno">//门锁电池电量</span><br />
+    info.getBattery();<br />
+    <span class="text-anno">//门锁信号强度</span><br />
+    info.getSignal();<br />
+    <span class="text-anno">//门锁的软件版本号</span><br />
+    info.getSoftwareVersionStr();<br />
+    <span class="text-anno">//门锁的硬件版本号</span><br />
+    info.getHardwareVersionStr();<br />
+    <span class="text-anno">//门锁的最大开门权限容量</span><br />
+    info.getPopedomCapacity();<br />
+    <span class="text-anno">//门锁当前已有的开门权限数量</span><br />
+    info.getPopedomCount();<br />
+    <span class="text-anno">//本次状态采集的时间，与UTC时间1970年时间差，以秒为单位</span><br />
+    info.getTime();<br />
+    </blockquote>
+    }else if (statusInfo instanceof ExtModuleStatusInfo) {<br />
+    <blockquote>
+    <span class="text-anno">//表示扩展模块的工作状态</span><br />
+    ExtModuleStatusInfo info = (ExtModuleStatusInfo)statusInfo;<br />
+    <span class="text-anno">//设备工作状态	0：正常工作，	1: 脱机，其他异常状态码</span><br />
+    info.getWorkStatus();<br />
+    <span class="text-anno">//本次状态采集的时间，与UTC时间1970年时间差，以秒为单位</span><br />
+    info.getTime();<br />
+    <span class="text-anno">//扩展模块的软件版本号</span><br />
+    info.getSoftwareVersionStr();<br />
+    <span class="text-anno">//扩展模块的硬件版本号</span><br />
+    info.getHardwareVersionStr();<br />
+    </blockquote>
+    }<br />
+    </blockquote>
+    }</p>
+</blockquote>
+</body>
+</html>

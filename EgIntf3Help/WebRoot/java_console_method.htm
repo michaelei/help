@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<table width="95%" border="1" cellspacing="0">
+  <tr>
+    <td><p class="justbold">public long dispatchTask(BasicMsg msg,OneTaskStateChangeListner listner)</p>
+    <p>下发控制任务命令到主控器</p>
+    <p>msg: 各种下行消息</p>
+    <p>listner: 针对该消息的任务监听器，即任务成功或失败后的处理，需自定义处理内容，参考“<a href="#" onclick="fnParentToPage('java_down_task.htm')">下行控制任务机制说明</a>”</p></td>
+  </tr>
+  <tr>
+    <td><p class="justbold">public boolean isCtrlOnline(String ctrlUUID)</p>
+    <p>判断某个主控器是否在线</p>
+    <p>ctrlUUID: 主控器唯一标识符</p></td>
+  </tr>
+  <tr>
+    <td><p><strong>public boolean isStarted()</strong></p>
+    <p>判断控制台是否已经启动</p></td>
+  </tr>
+  <tr>
+    <td><p><strong>public void setInitTaskID(long initTaskID)</strong></p>
+    <p>设置任务的初始编号。每次控制台重启，任务的初始编号都恢复为257开始，如果需要任务编号不重复，则可以在控制器启动之前，通过本方法设置起始编号。</p>
+    <p>initTaskID: 任务的起始编号，默认257，该编号用于通讯过程中的去重。</p></td>
+  </tr>
+  <tr>
+    <td><p class="justbold">public void setTaskTimeout(long timeout)</p>
+    <p>设置任务超时时间，调用该方法后，此后任务的超时都为新设置的时间。</p>
+    <p>timeout: 单位毫秒，默认60秒，即 60000。</p></td>
+  </tr>
+  <tr>
+    <td><p class="justbold">public void setMaxPopedomCountPerPacket(int maxCount)</p>
+    <p>设置每一包下载开门权限所能容纳的最大权限条数，默认30条，一般不改动</p></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  
+</table>
+</body>
+</html>

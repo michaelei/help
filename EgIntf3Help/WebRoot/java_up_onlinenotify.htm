@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">public void onOnlineNotify(OnlineNotify onlineNotify) </p>
+<p class="paddingleft10">onlineNotify：设备上线提醒对象，Java类：com.eg.intf3.msg.OnlineNotify</p>
+<p class="info-title">示例代码</p>
+<blockquote>
+  <p>public void onOnlineNotify(OnlineNotify onlineNotify) {<br />
+  <blockquote>
+    <span class="text-anno">//获得主控器唯一编号</span><br />
+    onlineNotify.getCtrlUUID();<br />
+    <span class="text-anno">//获得门锁的序列号，一般情况下，一个主控器只连接一把门锁，因此该编号=100</span><br />
+    onlineNotify.getDeviceCode();<br />
+    <span class="text-anno">//获得门锁的联机状态</span><br />
+    if(onlineNotify.getWorkStatus() == OnlineNotify.Status_OK){<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-anno">&nbsp;//=OnlineNotify.Status_OK表示该门锁工作正常</span><br />
+    }else if(onlineNotify.getWorkStatus() == OnlineNotify.Status_Offline){<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-anno">//=OnlineNotify.Status_Offline表示该门锁已经脱机了</span><br />
+    }else{<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-anno">//其它情况，暂时不用考虑，以后可能会扩展</span><br />
+    }<br />
+    </blockquote>
+    }</p>
+</blockquote>
+</body>
+</html>

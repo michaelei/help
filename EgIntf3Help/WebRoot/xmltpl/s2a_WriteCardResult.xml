@@ -1,0 +1,36 @@
+<!-- 
+	获得要写入卡片的数据内容，本系统提供的写卡类型：
+	Peopedom Card		权限卡
+	Systerm Key Set Card		系统密码设置卡
+	Region Set Card		区域设置卡
+	Total Control Card		总控卡
+	Emergency Card		应急卡
+	Clean Card		清洁卡
+	TimeSetCard		时钟卡
+	
+	该xml中可以包含多个卡片信息，至少一种
+ -->
+<?xml version="1.0" encoding="UTF-8"?>
+<egintf3 name="WriteCardResult">
+	<!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码-->
+	<pkgId>1</pkgId>
+	<!-- app请求的xml内容有错误 -->
+	<errors>
+		<error>error1</error>
+		<error>error2</error>
+		<error>error3</error>
+	</errors>
+	<!-- 根据请求的卡片类型返回，所有写卡数据均为16进制的字符形式 -->
+	<!-- 密钥设置卡 -->
+	<SystemKeySetCard>0102030405060708</SystemKeySetCard>
+	<!-- 区域设置卡 -->
+	<RegionSetCard>0102030405060708</RegionSetCard>
+	<!-- 总控卡 -->
+	<TotalControlCard>0102030405060708</TotalControlCard>
+	<!-- 应急卡 -->
+	<EmergencyCard>0102030405060708</EmergencyCard>
+	<!-- 时钟设置卡 -->
+	<TimeClockSetCard>0102030405060708</TimeClockSetCard>
+	<!-- 权限设置卡 / 清洁卡，清洁卡为权限设置卡的一种特例，两者需要指定的属性相同，当属性isCleanCard=true时，则为清洁卡，否则为一般权限卡 -->
+	<PopedomSetCard isCleanCard="true">0102030405060708</PopedomSetCard>
+</egintf3>

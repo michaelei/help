@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">控制台对象：com.eg.intf3.Console</p>
+<p class="paddingleft10">APP中必须创建一个Console的实例，对于设备的控制操作基本上都是围绕Console开展的。</p>
+<p class="info-title">步骤一：创建Console实例（必须）</p>
+<p class="paddingleft10">int  port = 2013;<span class="text-anno"> //Tcp Server的监听端口，用于主控器连接，默认2013</span></p>
+<p class="paddingleft10">Console  console = new Console(port);</p>
+<p class="info-title">步骤二：添加上行消息监听器对象</p>
+<p class="paddingleft10">console.addMessageTaskListener(new MyUpMsgListener());</p>
+<p class="paddingleft10">其中，对于主控器上行消息的监听操作需自定义一个监听器对象（如：MyUpMsgListener），自定义方法参考“<a href="#" onclick="fnParentToPage('java_up_listener.htm')">上行数据监听机制说明</a>”</p>
+<p class="info-title">步骤三：启动控制台</p>
+<p class="paddingleft10">console.start(); <span class="text-anno">//控制台的启动一般放置在APP程序启动之时</span></p>
+<p class="info-title">步骤四：停止控制台</p>
+<p class="paddingleft10">console.stop(); <span class="text-anno">//控制台的停止一般放在APP程序停止之时</span></p>
+</body>
+</html>

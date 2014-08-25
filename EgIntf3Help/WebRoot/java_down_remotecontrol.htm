@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/comm.js"></script>
+<link href="js/comm.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<p class="info-title">消息类：com.eg.intf3.msg.RemoteControl </p>
+<p class="paddingleft10">远程操作设备，有多种操作可以执行。参考下面的示例代码</p>
+<p class="info-title">示例代码-重启门锁</p>
+<div style="padding-left:20px;">
+<span class="text-anno">//指定主控器唯一标识符和设备通讯码</span><br />
+String ctrlUUID = "14:06:30:00:04:AB";<br />
+<span class="text-anno">//如果要重启主控器，只需将deviceCode=0</span><br />
+int deviceCode = 100;<br />
+<span class="text-anno">// 创建远程控制消息对象</span><br />
+RemoteControl msg = new RemoteControl(ctrlUUID, deviceCode);<br />
+<span class="text-anno">// 设置操作为：重启门锁</span><br />
+msg.setControlAction(RemoteControl.ControlAction_Device_Reset);<br />
+<span class="text-anno">//下发消息并设置监听器</span><br />
+console.dispatchTask(msg, new OneTaskStateChangeAdapter(){<br />
+<blockquote>@Override<br />
+public void onSuccess(Task task) {<br />
+<br />
+}<br />
+<br />
+@Override<br />
+public void onFail(Task task) {<br />
+<br />
+}<br />
+</blockquote>
+});
+</div>
+</body>
+</html>
