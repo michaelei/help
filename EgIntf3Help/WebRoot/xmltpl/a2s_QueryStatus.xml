@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<egintf3 name="QueryStatus">
-	<!-- 由app发送上来的xml数据一般都会携带pkgId，该Id由app自己指定，代表了这个数据包的唯一性 ，而结果返回时也会携带这个号码-->
-	<pkgId>1</pkgId>
-	<ctrlUUID>00:00:00:00:00:11</ctrlUUID>
-	<deviceCode>100</deviceCode>
-</egintf3>
